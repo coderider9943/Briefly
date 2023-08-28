@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
+  <link rel="icon" type="./image/png" sizes="16x16" href="./favicons/favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#e6511e">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+  <link rel="stylesheet" href="./css/general.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <!-- Noty -->
+  <link rel="stylesheet" href="lib/noty/noty.css">
+  <link rel="stylesheet" href="lib/noty/nest.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row" id="registration-div">
+      <div class="login-box">
+        <h2>Join Briefly</h2>
+        <div class="user-box">
+          <input class="form-control" type="email" id="user_email" required="">
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input class="form-control" type="password" id="user_password" required="">
+          <label>Password</label>
+        </div>
+        <div class="user-box">
+          <input class="form-control" type="password" id="confirm_password" required="">
+          <label>Confirm Password</label>
+        </div>
+        <div class="super-button-4">
+          <button style="width: 100%;" onclick="registration()" class="btn btn-primary">Register</a>
+        </div>
+        <div class="user-box">
+          <a href="./login.html" class="button" class="btn btn-primary float-right">Already got an account? Log in here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+<!-- Noty -->
+<script src="lib/noty/noty.js" type="text/javascript"></script>
+
+<!-- Firebase Config -->
+<script type="text/javascript" src="./js/config/config.js"></script>
+
+<!-- Functions -->
+<script type="text/javascript" src="./js/notification.js"></script>
+<script type="text/javascript" src="./js/register.js"></script>
+
+<script>
+
+  function registerServiceWorker() {
+    // register sw script in supporting browsers
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js', {
+        scope: '/'
+      }).then(() => {
+        console.log('Service Worker registered successfully.');
+      }).catch(error => {
+        console.log('Service Worker registration failed:', error);
+      });
+    }
+  }
+  registerServiceWorker();
+</script>
+
+</html>

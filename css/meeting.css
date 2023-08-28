@@ -1,0 +1,204 @@
+:root {
+    --stroke-color-dark: #e5e5e5;
+    --stroke-color-light: #262626;
+    --light-button: #eeeeee;
+    --border-small: 16px;
+    --border-medium: 24px;
+    --border-big: 32px;
+    --border-huge: 40px;
+    --light-heading: rgba(0, 0, 0, 0.3);
+    --super-dark-gray: rgb(22, 22, 22);
+}
+
+body {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    height: calc(100vh - 2em);
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.card {
+    border-radius: 32px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.webcam-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-card {
+    padding: 24px;
+    box-sizing: border-box;
+    overflow: auto;
+    border: 1px solid;
+    border-color: var(--stroke-color-dark);
+}
+
+.webcam-card {
+    position: relative;
+}
+
+.floating-io-buttons-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    padding: 8px 16px;
+    border-radius: 500px;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(72px);
+}
+
+.floating-io-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px;
+    color: white;
+}
+
+.floating-io-button img {
+    height: 24px;
+    width: 24px;
+}
+
+.floating-io-button:hover {
+    opacity: 75%;
+}
+
+.floating-logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 500px;
+    left: 24px;
+    top: 24px;
+    height: 24px;
+    opacity: 50%;
+}
+
+.draggable {
+    position: absolute;
+    /* Must be absolute or fixed */
+    cursor: default;
+    /* Change cursor shape */
+}
+
+/* Dark Modes */
+
+body.dark-mode {
+    background-color: var(--super-dark-gray);
+    color: var(--light-button);
+}
+
+.dark-mode .sidebar-card {
+    background-color: var(--super-dark-gray);
+    color: var(--super-dark-gray);
+    border-color: var(--stroke-color-light);
+}
+
+.dark-mode .webcam-card {
+    background-color: var(--super-dark-gray);
+}
+
+.dark-mode .floating-io-buttons-container {
+    background-color: var(--super-dark-gray);
+}
+
+#join-btn {}
+
+#video-streams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    height: 110vh;
+    width: 110vh;
+    margin: 0 auto;
+}
+
+.video-container {
+    max-height: 100%;
+    background-color: #131313;
+}
+
+.video-player {
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+#stream-controls {
+    display: none;
+    justify-content: center;
+    margin-top: 0.5em;
+}
+
+
+#timeProgress {
+    height: 90%;
+    width: 10px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    position:relative;
+    left: calc(100% - 20px);
+    top: 5%;
+}
+
+#timeBar {
+    height: 0px;
+    width: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #ff670a, #4600ff);
+    position: relative;
+    left: calc(100% - 10px) -20px;
+}
+
+@media screen and (max-width:1400px) {
+    #video-streams {
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        width: 95%;
+    }
+}
+
+.time-stage{
+    border: 2px solid #aaa;
+    background-color: #fff;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 500px;
+    color: #aaa;
+}
+
+.time-container{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    padding: 0 10px 0 10px;
+}
+
+.time-list{
+    display : flex;
+    flex-direction : column;
+    height : 80vh;
+    justify-content: space-around;
+    text-align: right;
+  
+}

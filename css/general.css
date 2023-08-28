@@ -1,0 +1,155 @@
+:root {
+    --stroke-color-dark: #e5e5e5;
+    --light-button: #eeeeee;
+    --light-button-hover: #dfdfdf;
+    --border-small: 16px;
+    --border-medium: 24px;
+    --border-big: 32px;
+    --border-huge: 40px;
+    --light-heading: rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    position: sticky;
+    top: 8px;
+    display: flex;
+    border: 1px solid;
+    border-color: var(--stroke-color-dark);
+    padding: 16px 16px 16px 24px;
+    border-radius: 100px;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.8); /* Or use a background color of your choice */
+    backdrop-filter: blur(72px);
+    z-index: 100; /* This ensures that the nav bar stays on top of other content */
+}
+
+nav img{
+    height: 26px;
+}
+
+.nav-left{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.nav-right{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.nav-item a{
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 500px;
+}
+
+.nav-item :hover{
+    background-color: var(--light-button);
+}
+
+.nav-action-button button{
+    background-color: var(--light-button);
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    border: none;
+    padding: 8px 16px 8px 16px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.nav-action-button-2 button{
+    background-color: black;
+    color: white;
+    border-radius: 500px;
+    border: none;
+    padding: 8px 16px 8px 16px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.super-button button{
+    background-color: black;
+    color: white;
+    border-radius: 500px;
+    border: none;
+    padding: 16px 56px 16px 56px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.super-button-2 button{
+    background-color: var(--light-button);
+    color: black;
+    border-radius: 500px;
+    border: none;
+    padding: 16px 56px 16px 56px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;;
+}
+
+.super-button-3 button{
+    background-color: black;
+    color: white;
+    border-radius: 500px;
+    border: none;
+    padding: 16px 24px 16px 24px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;;
+}
+
+.super-button-4 button{
+    background-color: var(--light-button);
+    color: black;
+    border-radius: 500px;
+    border: none;
+    padding: 16px 24px 16px 24px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.super-button-5 button{
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    border: none;
+    padding: 16px 24px 16px 24px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.super-button-4 :hover{
+    background-color: var(--light-button-hover);
+    color: black;
+}
+
+.super-input {
+    background-color: var(--light-button);
+    color: black;
+    border-radius: 500px;
+    border: none;
+    padding: 16px 16px 16px 16px;
+    font-family: "roc-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    text-indent: 8px;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briefly</title>
+    <link type="text/css" rel="stylesheet" href="./css/general.css">
+    <link type="text/css" rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+</head>
+<style type="text/css">
+    #user_mail_div{
+        display: none;
+    }
+
+    #log_in_div{
+        display: none;
+    }
+</style>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a><img src="./images/wordmark-dark.svg"></a>
+            <div class="nav-item"><a href="signup.html" style="color:rgb(0, 0, 0); text-decoration: none;"> Plans </a></div>
+            <div class="nav-item"><a href="signup.html" style="color:rgb(0, 0, 0); text-decoration: none;"> Support </a></div>
+            <div class="nav-item"><a href="signup.html" style="color:rgb(0, 0, 0); text-decoration: none;"> Sign Up </a></div> <!--TODO: REMOVE THIS WHEN LOGGED IN-->
+        </div>
+        <div class="nav-right">
+            <div class="nav-action-button dropdown" id = "user_mail_div">
+                <button onclick="toggleDropdown()"><span id="user_name"></span>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <button onclick="       "><span>Profile</span>
+                    <button onclick="       "><span>Manage Plan</span>
+                    <button onclick="logout()"><span>Log out</span>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-action-button" id = "log_in_div">
+                <button class="nav-action-button"><a href="./login.html" style="color:black; text-decoration:none">Log in</a></button>
+            </div>
+            <div class="nav-action-button-2">
+                <button class="nav-action-button"><a href="./setup.html" style="color:white; text-decoration:none">Start Meeting</a></button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="about-container">
+        <!-- Get Started -->
+        <div class="get-started-card">
+            <div class="about-card-content">
+                <h1>Meetings in seconds.</h1>
+                <h3>That last as short as they should.</h3>
+                <div style="display: flex; gap: 16px;">
+                    <a href="./setup.html">
+                        <div class="super-button-3"><button> + Start a meeting</button></div>
+                    </a>
+                    <a>
+                        <div class="super-button-5"><button> Join meeting</button></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Image -->
+        <div class="about-card-big-image">
+            <div class="about-card-big-image-content">
+                <div class="about-card-image">
+                    <img src="./images/hello.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="about-card">
+            <div class="about-card-content">
+                <!-- Add card's content here -->
+            </div>
+        </div>
+        <div class="about-card">
+            <div class="about-card-content">
+                <!-- Add card's content here -->
+            </div>
+        </div>
+
+        <!-- Headline -->
+        <div class="headline full-width">
+            <div class="about-card-content">
+                <h1>Now, if thats not enough...</h1>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-card full-width">
+            <img src="./images/wordmark-light.svg" alt="">
+            <div class="footer-links">
+                <a>Support</a>
+                <a>Safety</a>
+                <a>FAQ</a>
+                <a>Compare</a>
+                <a>Plans</a>
+                <a>Grainy AS</a>
+                © 2023 Briefly by Grainy AS
+            </div>
+            <a href="signup.html" style="text-decoration: none;">
+                <button" class="footer-button"> Sign up for free </button>
+            </a>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature">
+            <img src="./images/wordmark-dark.svg" alt="">
+        </div>
+    </div>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+<script type="text/javascript" src="./js/config/config.js"></script>
+<script type="text/javascript" src="./js/logout.js"></script>
+<script type="text/javascript" src="./js/authState.js"></script>
+
+</html>

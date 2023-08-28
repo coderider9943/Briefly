@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semd Email</title>
+    <link type="text/css" rel="stylesheet" href="./css/general.css">
+    <link type="text/css" rel="stylesheet" href="./css/email.css">
+    <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+</head>
+<body">
+    <div class="container">
+        <h1 class="title"> The meeting has ended </h1>
+        <div class="email-setting">
+            <h1 class="receive-text"> Do you wish to receive a transcript of the meeting to your email? </h1>
+            <div class="email">
+                <input class="email-input" id="to_mail" type="email" placeholder="Your email address here">
+                <a>
+                    <div class="super-button"><button onclick="send_mail()">Send</button></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function send_mail() {
+            const apiKey = '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';
+            const fromEmail = 'grainy@grainy.no';
+            const toEmail = document.getElementById("to_mail").value;
+            const subject = 'Meeting Content';
+            const message = 'Hello, Forever!';
+            const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send';
+
+            const sendEmail = async () => {
+                const emailData = {
+                    personalizations: [
+                        {
+                            to: [{ email: toEmail }],
+                            subject: subject,
+                        },
+                    ],
+                    from: { email: fromEmail },
+                    content: [{ type: 'text/plain', value: message }],
+                };
+                const emailData2 = 
+                    {"personalizations":[{"to":[{"email":"forever96121@gmail.com","name":"John Doe"}],"subject":"Hello, World!"}],"content": [{"type": "text/plain", "value": "Heya!"}],"from":{"email":"grainy@grainy.no","name":"Sam Smith"},"reply_to":{"email":"grainy@grainy.no","name":"Sam Smith"}}
+                
+                try {
+                    const response = await fetch(sendGridUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`,
+                            // 'Access-Control-Allow-Origin': '*',
+                        },
+                        body: JSON.stringify(emailData2),
+                    });
+
+                    if (response.ok) {
+                        console.log('Email sent successfully!');
+                    } else {
+                        console.error('Failed to send email:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('An error occurred while sending the email:', error);
+                }
+            };
+
+            sendEmail();
+        }
+        localStorage.clear();
+    </script>
+    </body>
+
+</html>

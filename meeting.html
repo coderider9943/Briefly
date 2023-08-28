@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briefly - Meeting</title>
+    <link type="text/css" rel="stylesheet" href="css/general.css">
+    <!-- <link type="text/css" rel="stylesheet" href="css/meeting.css"> -->
+    <link rel='stylesheet' type='text/css' media='screen' href='css/meeting.css'>
+    <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+</head>
+
+<body onload="joinStream()">
+
+    <!--The Meeting Feed Container-->
+    <div class="card webcam-card">
+
+        <div id="stream-wrapper">
+            <div id="video-streams"></div>
+        </div>
+
+        <div class="floating-io-buttons-container">
+            <button class="floating-io-button" id="copy-link-button-id"> <img src="images/copy-link.svg"></button>
+            <button class="floating-io-button" id="mic-btn"> <img src="images/mic-light.svg"></button>
+            <button class="floating-io-button" id="camera-btn"> <img src="images/cam-light.svg"></button>
+            <button class="floating-io-button" id="screen-share-button-id"> <img src="images/screen-share.svg"></button>
+            <button class="floating-io-button" id="dark-mode-button-id"> <img
+                    src="images/light-mode-light.svg"></button>
+            <button class="floating-io-button" id="leave-btn"> <img src="images/leave-light.svg"></button>
+            <!-- <a href="you-hung-up.html"> <button class="floating-io-button"> <img src="images/leave-light.svg"></button></a> -->
+
+            <button id="join-btn">Join Stream</button>
+
+        </div>
+
+        <a class="floating-logo" href="/index.html">
+            <img src="images/wordmark-light.svg">
+        </a>
+
+    </div>
+
+    <div class="card sidebar-card">
+        <h3><span id="lefttime"></span></h3>
+        <div class="time-container">
+            <div class="time-list" id = "topic-list"></div>
+            <div id="timeProgress">
+                <div id="timeBar"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/dark-mode.js"></script>
+    <script src="js/draggable.js"></script>
+    <script src="js/floating-io-buttons.js"></script>
+    <script src="js/AgoraRTC_N-4.7.3.js"></script>
+    <script src='js/meeting.js'></script>
+    <script>
+        var topic_list_Json = localStorage.getItem("topic_list")
+        var topic_list = JSON.parse(topic_list_Json);
+        topic_list.push("Good bye")
+        var container = document.getElementById("topic-list");
+        var elem_progress = document.getElementById("timeProgress");
+        for (var item of topic_list) {
+            var div = document.createElement("div");
+            var label = document.createElement("button")
+            label.textContent = item;
+            label.className = "time-stage";
+            label.id = item;
+            div.appendChild(label);
+            container.appendChild(div);
+        }
+    </script>
+
+    <script>
+        var i = 0;
+        var meeting_length = localStorage.getItem("meeting_length");
+        var lefttime = meeting_length * 60;
+        var elem_bar = document.getElementById("timeBar");
+        var elem_progress = document.getElementById("timeProgress");
+        var height = 0;
+        var id = setInterval(frame, 1000);
+
+        function frame() {
+            if (height >= elem_progress.offsetHeight) {
+                window.location.href ="./send-email.html"
+                clearInterval(id);
+            } else {
+                height = height + elem_progress.offsetHeight / (meeting_length * 60);
+                lefttime = lefttime - 1;
+                elem_bar.style.height = height + "px";
+                document.getElementById("lefttime").textContent = Math.round(lefttime / 60) + " Minutes Left"
+                if(i % 60 == 0 ){
+                    for (var item of topic_list) {
+                        document.getElementById(item).style.color = "#aaa"
+                    }
+                    const no = topic_list.length - Math.round(lefttime / (meeting_length * 60/topic_list.length))
+                    document.getElementById(topic_list[no]).style.color = "#000000"
+                }
+                i++;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

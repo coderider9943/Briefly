@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a meeting</title>
+    <link type="text/css" rel="stylesheet" href="./css/general.css">
+    <link type="text/css" rel="stylesheet" href="./css/setup.css">
+    <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+</head>
+<body">
+<div class="new-meeting-container">
+    <h1> Lets set up that meeting! </h1>
+    <div class="web-cam-preview">
+        <video id="video" width="100%" height="100%" autoplay></video>
+    </div>
+    <div class="button-row">
+        <input class="super-input" id="name" type="text" placeholder="Enter your name">
+        <img class="setup-io-button" src="./images/mic.svg">
+        <img class="setup-io-button" src="./images/camera.svg">
+    </div>
+    <div class="super-button" onclick="setup_username()"><button>Next</button></div>
+
+    <canvas id="canvas" width="0" height="0"></canvas>
+
+    <script src="./js/webcamtest.js"></script>
+
+</div>
+<script>
+    function setup_username() {
+        var input_elem = document.getElementById("name");
+        console.log(input_elem.value)
+        if (input_elem.value != ""){
+            localStorage.setItem("username", input_elem.value);
+        } else {
+            localStorage.setItem("username", "unknown");
+        }
+        window.location.href = "./create-room.html";
+    }
+</script>
+</body>
+</html>

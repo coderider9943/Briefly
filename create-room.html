@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creat a meeting room</title>
+    <link type="text/css" rel="stylesheet" href="./css/general.css">
+    <link type="text/css" rel="stylesheet" href="./css/create.css">
+    <link rel="stylesheet" href="https://use.typekit.net/erb2jvv.css">
+</head>
+<style type="text/css">
+    #time_input_div {
+        display: none;
+    }
+
+    #topic_input_div {
+        display: none;
+    }
+</style>
+<body">
+    <div class="new-meeting-container">
+        <h1> Nice, just one last thing. </h1>
+        <div class="setting-box-container">
+            <div class="setting-box">
+                <div class="topic-box">
+                    <h3><b>Topics</b></h3>
+                    <div id="topic-group" class="topic-group">
+                        <!-- <div>
+                            <h3>New front</h3>
+                            <button onclick="remove_topic_div(this)">&times;</button>
+                        </div> -->
+                    </div>
+                    <div class="input-row">
+                        <button class="new-topic-button" onclick="clice_new_topic()">+ New topic</button>
+                        <div class="input-row" id="topic_input_div">
+                            <input class="new-topic-input" id="new-topic-input" type="text" placeholder="Topic">
+                            <button class="topic-set-button" onclick="add_item()">Set</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="meeting-length-box">
+                    <h3>Length</h3>
+                    <div class="meeting-length-button-row">
+                        <button class="meeting-length-button" onclick="set_meeting_length(this)" id="15">15
+                            Minutes</button>
+                        <button class="meeting-length-button selected-meeting-length" onclick="set_meeting_length(this)"
+                            id="30">30 Minutes</button>
+                        <button class="meeting-length-button" onclick="set_meeting_length(this)" id="60">60
+                            Minutes</button>
+                        <div class="dropdown">
+                            <button class="meeting-length-button" id="custom"
+                                onclick="set_custom_length()">Custom</button>
+                            <div class="input-row dropdown-content" id="time_input_div">
+                                <input class="time-input" id="meeting-length-input" type="text" placeholder="Minutes">
+                                <button class="time-set-button" onclick="set_time()">Set</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="preview-box">
+                <div class="web-cam-preview">
+                    <video id="video" autoplay></video>
+                </div>
+                <div class="button-row">
+                    <text class="super-input" type="text" id="name"></text>
+                    <img class="setup-io-button" src="./images/mic.svg">
+                    <img class="setup-io-button" src="./images/camera.svg">
+                </div>
+                <a href="./meeting.html" class="margin-bottom">
+                    <div class="super-button"><button>Create Room</button></div>
+                </a>
+
+                <canvas id="canvas" width="0" height="0"></canvas>
+
+                <script src="./js/webcamtest.js"></script>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script>
+        let topic_list = ["Intro"];
+        var jsonString = JSON.stringify(topic_list);
+        localStorage.setItem("topic_list", jsonString);
+        localStorage.setItem("meeting_length", 30);
+        var userElement = document.getElementById("name");
+        userElement.textContent = localStorage.getItem("username");
+        function set_meeting_length(selected_element) {
+            var divElements = document.getElementsByClassName("meeting-length-button");
+            for (var i = 0; i < divElements.length; i++) {
+                divElements[i].classList.remove("selected-meeting-length");
+            }
+            selected_element.classList.add("selected-meeting-length");
+            localStorage.setItem("meeting_length", parseInt(selected_element.id));
+            document.getElementById("time_input_div").style.display = "none";
+        }
+
+        function set_custom_length() {
+            document.getElementById("meeting-length-input").value = localStorage.getItem("meeting_length");
+            document.getElementById("time_input_div").style.display = "block";
+        }
+
+        function set_time() {
+            var divElements = document.getElementsByClassName("meeting-length-button");
+            var inputElement = document.getElementById("meeting-length-input");
+            for (var i = 0; i < divElements.length; i++) {
+                divElements[i].classList.remove("selected-meeting-length");
+            }
+            document.getElementById("custom").classList.add("selected-meeting-length");
+            localStorage.setItem("meeting_length", parseInt(inputElement.value));
+            document.getElementById("time_input_div").style.display = "none";
+        }
+
+        function remove_topic_div(element) {
+            var parentDiv = element.parentNode;
+            var topic_list_Json = localStorage.getItem("topic_list")
+            var topic_list = JSON.parse(topic_list_Json);
+            console.log("============>", topic_list);
+            var itemToRemove = divElement.querySelector("h3").textContent;
+            var index = topic_list.indexOf(itemToRemove);
+            if (index !== -1) {
+                topic_list.splice(index, 1);
+            }
+            var jsonString = JSON.stringify(topic_list);
+            localStorage.setItem("topic_list", jsonString);
+            parentDiv.remove();
+        }
+        
+        function clice_new_topic () {
+            document.getElementById("topic_input_div").style.display = "block";
+        }
+
+        function add_item() {
+            var itemDiv = document.createElement("div");
+            var item_H3 = document.createElement("h3");
+            var close_Button = document.createElement("button");
+            var topic_list_Json = localStorage.getItem("topic_list")
+            var topic_list = JSON.parse(topic_list_Json);
+            item_H3.textContent = document.getElementById("new-topic-input").value;
+            close_Button.innerHTML = "&times;";
+            itemDiv.appendChild(item_H3);
+            itemDiv.appendChild(close_Button);
+            var parentElement = document.getElementById("topic-group");
+            parentElement.appendChild(itemDiv);
+            close_Button.addEventListener("click", function() {
+                var topic_list_Json = localStorage.getItem("topic_list")
+                var topic_list = JSON.parse(topic_list_Json);
+                var itemToRemove = this.parentNode.querySelector("h3").textContent;
+                var index = topic_list.indexOf(itemToRemove);
+                if (index !== -1) {
+                    topic_list.splice(index, 1);
+                }
+                var jsonString = JSON.stringify(topic_list);
+                localStorage.setItem("topic_list", jsonString);
+                this.parentNode.remove();
+            });
+            document.getElementById("topic_input_div").style.display = "none";
+            
+            topic_list.push(document.getElementById("new-topic-input").value);
+            var jsonString = JSON.stringify(topic_list);
+            localStorage.setItem("topic_list", jsonString);
+        
+        }
+    </script>
+
+
+</html>
